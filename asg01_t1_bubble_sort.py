@@ -107,3 +107,72 @@ On line 22, a support variable should be used to swap the array values, otherwis
  • Inpython we are allowed to use this kind of object swap without relying on support variables.
  Due to the order the expression is evaluated, in the assignment cases python always evaluates
  the right-hand side of the expression first
+
+
+
+
+ Mechanics:
+Starting from the beginning of the array, compare adjacent elements
+If the first element is greater than the second, swap them
+Move to the next pair of adjacent elements
+After each pass through the array, the largest unsorted element "bubbles up" to its correct position
+The process repeats, each time working with a smaller unsorted portion of the array
+
+Time Complexity:
+Worst Case: O(n²)
+Occurs when array is sorted in reverse order
+Requires maximum number of comparisons and swaps
+
+
+Best Case: O(n)
+Occurs when array is already sorted
+Only requires one pass to confirm no swaps needed
+
+Average Case: O(n²)
+Typically performs similarly to worst case
+Not efficient for large datasets
+
+Space Complexity:
+O(1) - In-place algorithm
+Only needs a single additional variable for swapping elements
+
+Key Characteristics:
+Stable Sort: Maintains relative order of equal elements
+In-place: Doesn't require extra space proportional to input size
+Adaptive: Performance improves if data is partially sorted
+Comparison-based: Uses element comparisons to determine order
+
+Optimization Techniques:
+
+Early Termination:
+pythonCopydef bubbleSort(array):
+    n = len(array)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n-i-1):
+            if array[j] > array[j+1]:
+                array[j], array[j+1] = array[j+1], array[j]
+                swapped = True
+        if not swapped:  # If no swapping occurred, array is sorted
+            break
+Advantages:
+
+Simple to understand and implement
+Requires minimal extra space
+Stable sorting algorithm
+Works well for small datasets
+Easy to detect if array is sorted
+
+Disadvantages:
+
+O(n²) complexity makes it inefficient for large datasets
+Not suitable for large datasets
+More swaps required compared to insertion sort
+
+Best Use Cases:
+
+Educational purposes (learning about sorting algorithms)
+Small datasets (< 50 elements)
+Nearly sorted data
+When code simplicity is preferred over efficiency
+When stable sorting is required and space is a constraint
