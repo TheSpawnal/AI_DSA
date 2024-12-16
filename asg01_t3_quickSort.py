@@ -60,3 +60,106 @@ def sort(data: List[Tuple[int, int, int]]) -> List[int]:
     '''
     return None
 
+
+
+ 1 Define swap(arr, i, j)
+ 2      Swap objects between the indexes i and j of the arr list
+ 3
+ 4 Define quicksort(arr, lo, hi)
+ 5      If lo and hi are greater or equal to 0 and if lo is less than hi
+ 6      Partition the array
+ 7      Call the quicksort on the right partition
+ 8      Call the quicksort on the left partition
+ 9
+ 10 Define partition(arr, lo, hi)
+ 11     Pivot object is the object in the middle of the list
+ 12
+ 13     Set one counter (i) to the index before the lower index
+ 14     Set one counter (j) to the index after the upper index
+ 15
+ 16     Loop forever
+ 17         Update i by decreasing it by one
+ 18         While the value in arr at index i is less than the pivot
+ 19             Increase i (so that we are consider the next element in arr)
+ 20         Update j by decreasing it by one
+ 21         While the value in the arr at index j is greater that the pivot
+ 22             Increase j (so that we are consider the previous element in arr)
+ 23
+ 24         If the indexes i and j have crossed (i>=j) then return j
+ 25
+ 26         Swap the element at index i with the one at index j
+ 27
+ 28 Define sort(data)
+ 29     Create an empty support list
+ 30
+ 31     Fill the support list with the objects in data, converting them into an Order object
+ 32
+ 33     Call quicksort on the list
+ 34
+ 35     Return the id of every Order in the list
+
+
+ 1 def swap(arr: List[Order], i: int, j: int):
+ 2      arr[i], arr[j] = arr[j], arr[i]
+ 3
+ 4 def quicksort(arr: List[Order], lo: int, hi: int):
+ 5      if lo>= 0 and hi>= 0 and lo<hi:
+ 6      p = partition(arr, lo, hi)
+ 7      quicksort(arr, p + 1, hi)
+ 8      quicksort(arr, 0, p)
+ 9
+ 10 def partition(arr: List[Order], lo: int, hi: int):
+ 11     pivot = arr[(hi+lo)//2]
+ 12
+ 13     i = lo # initialize after lower bound :i = lo -1 
+ 14     j = hi # initialize after upper bound : j = hi + 1
+ 15
+ 16     while(True):
+ 17
+ 18         i = i + 1
+ 19         while arr[i]<pivot:
+ 20             i = i + 1
+ 21
+ 22         j = j−1
+ 23         while arr[j]>pivot:
+ 24             j = j−1
+ 25
+ 26         if i>= j:
+ 27             return j
+ 28
+ 29         swap(arr, i, j)
+ 30
+ 31
+ 32 def sort(data: List[Tuple[int,int,int]])−>List[int]:
+ 33     arr: List[Order] = []
+ 34
+ 35     for id, selectiont, shipping t in data:
+ 36         arr.append(Order(id, selectiont, shipping t))
+ 37
+ 38     quicksort(arr, 0, len(arr)−1)
+ 39
+ 40     return [a.id for a in arr]
+
+
+which of the following statements about the code are true:
+
+The implementation is correct and contains no bug.
+FALSE
+
+At line 2, the value swap between two variables cannot be done in that manner. It is necessary to rely on a temporary variable.
+FALSE
+
+At lines 12 and 13, the i and j indices should be initialized as i = lo - 1 and j = hi + 1.
+TRUE
+
+At lines 12 and 13, the i and j indices should be initialized as i = lo + 1 and j = hi - 1.
+FALSE
+
+At line 11, the pivot should be set as pivot = arr[lo], else the algorithm will not be able to sort correctly.
+FALSE
+The pivot of the array can be any element in the array. The best pivot point would be the
+ one that has items that are less than itself on the left, and greater than itself items on the
+ right. The middle point of the array is often used as pivot since reduces the cases in which
+ all the elements needs to be moved (if you pick the first item as pivot you’ll have to move
+ many elements unless the pivot you picked is the smallest number). But any index can be
+ picked as pivot, non affecting the correctness of the final solution.
