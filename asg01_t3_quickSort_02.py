@@ -48,7 +48,7 @@ In-place sorting, while potentially more complex to implement, is more memory-ef
  21         elif val>pivot:
  22             greater.append(val)
 #           else:
-#               equal.append(val)            
+#               equal.append(val)      handle equal elements      
  23
  24     left = quicksort(smaller)
  25     right = quicksort(greater)
