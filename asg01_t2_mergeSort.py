@@ -131,4 +131,91 @@ Pseudo code:
  51     Return the pointer to the start of the list
 
 
+ 10 def merge sort(head: Union[Order,None])->Union[Order,None]:
+ 20     if not head:
+ 30         return None
+ 40     arr: List[Union[Order,None]] = [None for in range(32)]
+ 50     result: Union[Order,None] = None
+ 60     next: Union[Order,None] = None
+ 70     result = head
+ 80
+ 90     while result:
+ 10         next = result.next
+ 11         result.next = None
+ 12         i = 0
+ 13         for i in range(32):
+ 14             if arr[i] is None:
+ 15                 break
+ 16             result = merge(arr[i], result)
+ 17             arr[i] = None
+ 18
+ 19         arr[i] = result
+ 20         result = next
+ 21
+ 22     result = None
+ 23     for i in range(32):
+ 24         result = merge(arr[i], result)
+ 25
+ 26     return result
+ 27
+ 28
+ 29 def merge(left: Union[Order,None], right: Union[Order,None])−>Union[Order,None]:
+ 30     result: Union[Order,None] = None
+ 31     ref: Union[Order,None] = None
+ 32
+ 33     while left and right:
+ 34         if left<= right:
+ 35             if result:
+ 36                 result.add next(left)
+ 37                 result = left
+ 38             else:
+ 39                 ref = left
+ 40                 result = left
+ 41
+ 42             left = left.next
+ 43
+ 44         else:
+ 45             if result:
+ 46                 result.add next(right)
+ 47                 result = right
+ 48             else:
+ 49                 ref = right
+ 50                 result = right
+ 51
+ 52         right = right.next
+ 53
+ 54     while left:
+ 55         if result:
+ 56             result.add next(left)
+ 57             result = left
+ 58         else:
+ 59             ref = left
+ 60             result = left
+ 61
+ 62         left = left.next
+ 63
+ 64     while right:
+ 65         if result:
+ 66             result.add next(right)
+ 67             result = right
+ 68         else:
+ 69             ref = right
+ 70             result = right
+ 71
+ 72         right = right.next
+ 73
+ 74     return ref
 
+
+
+which of the following statements about the code are true:
+
+-At line 15, we should not break but instead return result, 
+otherwise the code will never return once we are at the end.
+
+-The implementation is correct and contains no bug.
+
+-The code will only run for arrays of length divisible by 32.
+   
+-At line 35, we cannot use while left and right: 
+   since they are lists and will never have True or False as a value.
