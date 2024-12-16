@@ -81,54 +81,54 @@ Pseudo code:
  1 #Assume that the objects have a .next field that represent the following element, None if there’s none
  2
  3 Define merge sort(head)
- 4 if head is empty return None
+ 4      if head is empty return None
  5
- 6 arr = list of 32 Nones
- 7 result, next = None
+ 6      arr = list of 32 Nones
+ 7      result, next = None
  8
- 9 result = head
+ 9      result = head
  10
- 11 #Merge nodes into array
- 12 while result is not null:
- 13 Save the reference to the result next node into next
- 14 Reset the result to None
- 15 For each value of arr
- 16 If current value is None then break
- 17 result = merge(current value, result)
- 18 Assign null to current value
- 19 Assign result to the second last value of arr
- 20 result = next
+ 11     #Merge nodes into array
+ 12     while result is not null:
+ 13         Save the reference to the result next node into next
+ 14         Reset the result to None
+ 15         For each value of arr
+ 16             If current value is None then break
+ 17             result = merge(current value, result)
+ 18             Assign null to current value
+ 19         Assign result to the second last value of arr
+ 20         result = next
  21
- 22 #Merge array into single list
- 23 result = null
- 24 For each item in arr
- 25 result = merge(current value, result)
+ 22      #Merge array into single list
+ 23     result = null
+ 24     For each item in arr
+ 25         result = merge(current value, result)
  26
- 27 return result
+ 27     return result
  28
  29 Define merge(left, right)
- 30 result = None
- 31 ref = None
+ 30     result = None
+ 31     ref = None
  32
- 33 While left is not null and right is not null:
- 34 If right greater or equal to left
- 35 If result is not null then append left to the result
- 36 else assign left to the result
- 37 Assign the value after left to left
- 38 else
- 39 If result is not null then append right to the result
- 40 else assign right to the result
- 41 Assign the value after right to right
+ 33     While left is not null and right is not null:
+ 34         If right greater or equal to left
+ 35             If result is not null then append left to the result
+ 36             else assign left to the result
+ 37             Assign the value after left to left
+ 38         else
+ 39             If result is not null then append right to the result
+ 40             else assign right to the result
+ 41             Assign the value after right to right
  42
- 43 While there are elements remaining in left
- 44 Append left to result
- 7
-45 Assign the value after left to left
+ 43     While there are elements remaining in left
+ 44         Append left to result
+ 45         Assign the value after left to left
  46
- 47 While there are elements remaining in right
- 48 Append right to result
- 49 Assign the value after right to right
+ 47     While there are elements remaining in right
+ 48         Append right to result
+ 49         Assign the value after right to right
  50
- 51 Return the pointer to the start of the list
+ 51     Return the pointer to the start of the list
+
 
 
