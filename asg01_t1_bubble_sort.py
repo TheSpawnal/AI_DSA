@@ -104,8 +104,6 @@ On line 22, a support variable should be used to swap the array values, otherwis
  the right-hand side of the expression first
 
 
-
-
  Mechanics:
 Starting from the beginning of the array, compare adjacent elements
 If the first element is greater than the second, swap them
