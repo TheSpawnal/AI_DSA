@@ -75,7 +75,7 @@ Pseudo code:
  51     Return the pointer to the start of the list
 
 
- 10 def merge sort(head: Union[Order,None])->Union[Order,None]:
+ 10 def merge_sort(head: Union[Order,None])->Union[Order,None]:
  20     if not head:
  30         return None
  40     arr: List[Union[Order,None]] = [None for _ in range(32)]

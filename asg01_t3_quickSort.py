@@ -1,6 +1,8 @@
 
 T3:Include Past Data with one Warehouse and Sort by Job Priority 
-Covid happens and IKEA is in turmoil, as the way they were calculating the job priority (the constant selection time) does not work anymore. You have a bunch of jobs to schedule on a single ‘machine’.
+Covid happens and IKEA is in turmoil, as the way they were calculating the job priority 
+(the constant selection time) does not work anymore. 
+You have a bunch of jobs to schedule on a single ‘machine’.
 Job j requires p j units of processing time and has a positive weight w j which represents its relative importance - think of it as the inventory cost of storing the raw materials for job j for 1 unit of time. If job j finishes being processed at time t, then it costs t * w j dollars. The goal is to sequence the jobs
 so as to minimize the sum of the weighted completion times of each job. You should expect between 10*10K - 20*20K elements.
 Use Smith’s rule, that is, schedule the jobs in the order of their ratio of processing time to weight.
