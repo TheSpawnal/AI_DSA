@@ -148,9 +148,19 @@ FALSE
 
 At line 2, the value swap between two variables cannot be done in that manner. It is necessary to rely on a temporary variable.
 FALSE
+ As previously mentioned: in python we are allowed to use this kind of object swap without
+ relying on support variables. Due to the order the expression is evaluated, in the assignment
+ cases python always evaluates the right-hand side of the expression first.
 
 At lines 12 and 13, the i and j indices should be initialized as i = lo - 1 and j = hi + 1.
 TRUE
+ The i and j variables need to be set to i = lo-1 and j = hi+1 since once in the loop they
+ will be respectively increased and decrease at every step to move towards the center. Since
+ we want a single loop to run instead of one loop for the first step and a second loop for all
+ the other steps, we need to set the variable to that ”correct” values. It is a simple coding
+ trick that allows us to have a single loop, it is not really something specific about quicksort.
+ If they are set to i = lo and j = hi then the first and last value will not be checked since
+ in the while loop those values are then increased and decreased.
 
 At lines 12 and 13, the i and j indices should be initialized as i = lo + 1 and j = hi - 1.
 FALSE

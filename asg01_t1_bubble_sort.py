@@ -1,8 +1,8 @@
 
 T1:
 Supply Chain Management Software at IKEA(Let's pretend).
-IKEA has finally decided to invest in digitising their operations and the supply chain. They contracted
-us to design an algorithm to sort a list of orders by selection time (t_selection, finding the good in
+IKEA has finally decided to invest in digitising their operations and the supply chain. 
+They contracted us to design an algorithm to sort a list of orders by selection time (t_selection, finding the good in
 the warehouse and bringing it to the surface) plus shipping time (t_shipping, constant). The customer
 orders can be retrieved (in the same order as placed) from a server database. You should expect between
 100-10K elements.
@@ -105,6 +105,16 @@ On line 22, a support variable should be used to swap the array values, otherwis
 
 
  Mechanics:
+
+ Bubble Sort
+BubbleSort (Array A):
+    n=size of A
+    for i=0 to n-1 do
+        for j=0 to n-i-1 do
+            # compare two adjacent elements
+                if A[j] > A[j + 1] then
+                    swap(A[j],A[j+1])
+
 Starting from the beginning of the array, compare adjacent elements
 If the first element is greater than the second, swap them
 Move to the next pair of adjacent elements
