@@ -1,15 +1,100 @@
-Heaps are commonly implemented with an array, 
-the positioning in the array determines the positioning in the tree, 
-here's an example: [A,B,C,D,E,F] A has 2 leaves (BandC), 
-B has 2 leaves (DandE), C has 1 leaf(F). 
-Considering the lexicographical order this would be a min-heap since 
-the children are always greater than the parent. 
-Here's an implementation of min-heap and some of its main methods
+# Heaps are commonly implemented with an array, 
+# the positioning in the array determines the positioning in the tree, 
+# here's an example: [A,B,C,D,E,F] A has 2 leaves (BandC), 
+# B has 2 leaves (DandE), C has 1 leaf(F). 
+# Considering the lexicographical order this would be a min-heap since 
+# the children are always greater than the parent. 
+# Here's an implementation of min-heap and some of its main methods
 
 
+# Define class MinHeap
+#     Define init()
+#         Initialize heap field to an empty list
+    
+#     Define parent(i)
+#         Return the index of the parent of the node at the i−th position
+    
+#     Define left child(i)
+#         Return the index of the left child of the node at the i−th position
+    
+#     Define right child(i)
+#         Return the index of the right child of the node at the i−th position
+    
+#     Define insert(value)
+#         Append the new value at the end of the heap
+#         Starting from the last element of the heap
+#         While the element index is greater than 0 and the current element is less than its parent
+#             Swap the values of the current element and its parent
+
+#     Define get min()
+#         If the heap has elements, then return the element of the heap field at index 0
+#         else return None
 
 
+class MinHeap:
+    def __init__ (self):
+        self.heap = []
 
+    def parent(self, i):
+        return (i-1) / 2
+    
+    def left_child(self, i):
+        return 2 * i + 1
+
+    def right_child(self, i):
+        return 2 * i + 2
+
+    def insert(self, value):
+        self.heap.append(value)
+        i = len(self.heap)
+        while i>0 and self.heap[i]<self.heap[self.parent(i)]:
+            self.heap[i], self.heap[self.parent(i)] = self.heap[self.parent(i)], self.heap[i]
+            i = self.parent(i)
+
+    # def insert(self, value):
+    #     """
+    #     Insert a value into the min heap and maintain the heap property
+    #     by bubbling up the value to its correct position.
+    #     """
+    #     # 1. Add the new value to the end of the heap
+    #     self.heap.append(value)
+        
+    #     # 2. Get the index of the newly added value
+    #     i = len(self.heap) - 1
+        
+    #     # 3. Bubble up: While we're not at root and parent is greater than current
+    #     while current > 0:
+    #         parent_idx = self.parent(i)
+            
+    #         # If parent is greater than current value, swap them
+    #         if self.heap[parent_idx] > self.heap[i]:
+    #             self.swap(i, parent_idx)
+    #             i = parent_idx  # Move up to the parent position
+    #         else:
+    #             break  # Heap property is satisfied, we can stop
+
+
+    def get_min(self):
+        if len(self.heap)>0:
+            return self.heap[0]
+        else:
+            return None
+
+
+# which are true:
+
+# A: the parent method is wrong, since it may return a non integer value TRUE
+
+# B: while at line 51:
+# self.heap[i], self.heap[self.parent(i)] = self.heap[self.parent(i)], self.heap[i]
+# stops as soon as the parent is greater than the child, but it should instead continue to verify that it is true
+# throughout the whole hierachy FALSE
+
+# C: the get_min method doesn't take into consideration lists witch a negative number of values, it could 
+# break because of this FALSE
+
+# D: the insert method will break raising IndexError:index out of range TRUE
+######################################################################################################
 #recall mainstrean implementation:
 class MinHeap:
     def __init__(self):
