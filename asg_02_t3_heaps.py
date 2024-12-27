@@ -84,16 +84,31 @@ class MinHeap:
 # which are true:
 
 # A: the parent method is wrong, since it may return a non integer value TRUE
+# The parent function could return a float value, which is definitely wrong since it needs to
+# return the index of the parent of the i-th item, and indexes must be integer values. The
+# correct operator is // which would truncate decimal division results, leading to the correct
+# index being returned.
 
 # B: while at line 51:
 # self.heap[i], self.heap[self.parent(i)] = self.heap[self.parent(i)], self.heap[i]
 # stops as soon as the parent is greater than the child, but it should instead continue to verify that it is true
 # throughout the whole hierachy FALSE
+There is no need for the while at line 18 to continue looping after having found that the
+ parent is greater than the child. Since we are in a min-heap we know that before adding a
+ new element the min-heap is already correctly ordered. For this reason, once we have that
+ the new item becomes greater than its parent, we are assured that the parent, the grand
+ parent and so on will be already correctly ordered.
 
-# C: the get_min method doesn't take into consideration lists witch a negative number of values, it could 
+# C: the get_min method doesn't take into consideration lists with a negative number of values, it could 
 # break because of this FALSE
+ Lists cannot contain a negative number of values; we cannot have less than 0 items in a list.
 
 # D: the insert method will break raising IndexError:index out of range TRUE
+ Setting i to the length of the list after having appended the new element will cause us to
+ subsequently look for an item that doesn’t exist at line 17 when we use self.heap[i]. List
+ indexes are zero-based, therefore the last index will be equal to the list length minus one. In
+ order to fix the issue we should have done i = len(self.heap)-1 or swapped line 15 with
+ line 16.
 ######################################################################################################
 #recall mainstrean implementation:
 class MinHeap:
