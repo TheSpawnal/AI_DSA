@@ -1,4 +1,16 @@
-#ty claude 3.5 for the redcqll
+Heaps are commonly implemented with an array, 
+the positioning in the array determines the positioning in the tree, 
+here's an example: [A,B,C,D,E,F] A has 2 leaves (BandC), 
+B has 2 leaves (DandE), C has 1 leaf(F). 
+Considering the lexicographical order this would be a min-heap since 
+the children are always greater than the parent. 
+Here's an implementation of min-heap and some of its main methods
+
+
+
+
+
+#recall mainstrean implementation:
 class MinHeap:
     def __init__(self):
         # Initialize with empty list
