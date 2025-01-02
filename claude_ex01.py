@@ -1,12 +1,12 @@
 # 1. Binary Search with Edge Cases
 def binary_search(arr, target):
     left = 0
-    right = len(arr)  # Subtle bug: should be len(arr) - 1
+    right = len(arr)  
     
     while left <= right:
-        mid = left + (right - left) // 2  # Avoiding potential overflow
+        mid = left + (right - left) // 2
         
-        if mid >= len(arr):  # Protection against index out of range
+        if mid >= len(arr):  
             return -1
             
         if arr[mid] == target:
@@ -23,6 +23,13 @@ def binary_search(arr, target):
 # B: The protection against index out of range is unnecessary since the while condition prevents it
 # C: The mid calculation could lead to integer overflow in Python
 # D: The initial right value causes the algorithm to miss the last element
+
+# Binary Search:
+# - A: False (right should be len(arr)-1)
+# - B: False (protection is needed due to the bug in right initialization)
+# - C: False (Python integers have unlimited precision)
+# - D: False
+
 
 # 2. QuickSort with Pivot Selection
 def quicksort(arr, low, high):
@@ -102,11 +109,6 @@ class MinHeap:
 
 # Correct Answers:
 """
-Binary Search:
-- A: False (right should be len(arr)-1)
-- B: False (protection is needed due to the bug in right initialization)
-- C: False (Python integers have unlimited precision)
-- D: True
 
 QuickSort:
 - A: True
