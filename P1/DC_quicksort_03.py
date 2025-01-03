@@ -1,21 +1,3 @@
-# T3:Include Past Data with one Warehouse and Sort by Job Priority 
-# Covid happens and IKEA is in turmoil, as the way they were calculating the job priority 
-# (the constant selection time) does not work anymore. 
-# You have a bunch of jobs to schedule on a single ‘machine’.
-# Job j requires p j units of processing time and has a positive weight w j which represents its relative importance
-#  - think of it as the inventory cost of storing the raw materials for job j for 1 unit of time. 
-#  If job j finishes being processed at time t, then it costs t * w j dollars. The goal is to sequence the jobs
-# so as to minimize the sum of the weighted completion times of each job. You should expect between 10*10K - 20*20K elements.
-# Use Smith’s rule, that is, schedule the jobs in the order of their ratio of processing time to weight.
-# This greedy rule turns out to be optimal.
-
-# Example 3. The sort() function takes a data list of tuples (list[tuple[id:int, p:int, w:int]])
-# as a parameter representing the data-set of jobs. Where, id, p, w are of type unsigned int, and, n is the number of orders.
-
-# <(i d1>, <p1>, <w1>), ..., (<i dn >,<pn >, <wn >)]
-
-# The function returns a list of integers of the job ids, sorted using Smith’s rule.
-# Hint: The Merge or Bubble sort may not work for this input size, consider Quick sort
 
 
 # the following code implements a Job class (similar to Assignment 1 Task 3), where p is processing time and w is importance;
@@ -93,7 +75,7 @@ def quicksort(ar: List[Job]):
         elif val>pivot:
             greater.append(val)
         else:
-            if i<mid:
+            if i<mid:#line36
                 greater.append(val)
             else:
                 smaller.append(val)
@@ -113,13 +95,13 @@ def sort(data:List[Tuple[int,int,int]])−>List[int]:
 
 # which are true ? 
 
-# The if statement at line 95, appends jobs equal to the pivot into the wrong list, preventing the correct sorting of the list. FALSE
+# The if statement at line 36, appends jobs equal to the pivot into the wrong list, 
+# preventing the correct sorting of the list. FALSE
 # Appending the pivot to one of the two sides isn't an error itself, it is an error adding it to a
 # list and also returning it in the return statement, but doing only one of those is not an error
 # itself. Also there is not a wrong list, the pivot can be appended to any list.
 
 # The implementation is correct and contains no bug. FALSE
-
 
 # The code will duplicate the pivot value of the array passed to the quicksort method. TRUE
 # The code will indeed duplicate the pivot object since it will be both placed in the smaller
@@ -127,36 +109,9 @@ def sort(data:List[Tuple[int,int,int]])−>List[int]:
 # it will return a duplicated pivot.
 
 
-# The greaterandsmaller lists passed to quicksort will not be correctly unpacked, preventing the correct execution.TRUE
+# The greater and smaller lists passed to quicksort will not be correctly unpacked, preventing the correct execution.TRUE
 # The lists passed as left = quicksort([smaller]) and its right counterpart will not be
 # correctly unpacked since they're surrounded by brackets. This will make the list be the only
 # element of another list, and when the quicksort method will run it will not be able to find
 # multiple elements, the only found element will be a list of objects instead of an object.
 
-
-
-corrected: 
-def quicksort(ar: List[Job]):
-    if len(ar) <= 1:
-        return ar
-
-    mid = len(ar)//2
-    pivot = ar[mid]
-    
-    smaller, greater = [], []
-
-    for i, val in enumerate(ar):
-        if i != mid:  # Don't process pivot
-            if val < pivot:
-                smaller.append(val)
-            elif val > pivot:
-                greater.append(val)
-            else:  # Equal case
-                if i < mid:
-                    smaller.append(val)
-                else:
-                    greater.append(val)
-    
-    left = quicksort(smaller)    # Fixed: Don't wrap in list
-    right = quicksort(greater)   # Fixed: Don't wrap in list
-    return left + [pivot] + right

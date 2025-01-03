@@ -25,6 +25,21 @@
 #     Return the left list, appending the pivot, appending the right list
 
 
+
+class Order:
+    def init (self, id, selectiontime, shippingtime):
+        self.id: int = id
+        self.selectiontime: int = selectiontime
+        self.shippingtime: int = shippingtime
+ 
+    def eq (self, other):
+        return (self.selectiontime + self.shippingtime) == (other.selectiontime + other.shippingtime)
+ 
+    def gt (self, other):
+        return (self.selectiontime + self.shippingtime)>(other.selectiontime + other.shippingtime)
+
+
+
 def swap(arr: List[Order], i: int, j: int):
     tmp = arr[i]
     arr[i] = arr[j]
@@ -34,10 +49,10 @@ def quicksort(ar: List[Order]):
     if len(ar)<= 1:
         return ar
 
-    mid = len(ar)//2
+    mid = len(ar)//2 #line11
     pivot = ar[mid]
 
-    smaller,greater = [],[] # missing : equal = []
+    smaller,greater = [],[] 
  
     for i, val in enumerate(ar):
         if i == mid:
@@ -46,8 +61,6 @@ def quicksort(ar: List[Order]):
             smaller.append(val)
         elif val>pivot:
             greater.append(val)
-#       else:
-#            equal.append(val)      handle equal elements      
     left = quicksort(smaller)
     right = quicksort(greater)
     return left+[pivot]+right
@@ -67,9 +80,10 @@ def quicksort(ar: List[Order]):
 #  the pivot) will be lost at every iteration. (This is a very nasty error, I must admit it. Kudos
 #  to the ones who spotted it.)
 
-# The pivot is not included in the left sub-list nor the right sub-list, therefore its value will be lost during the execution. FAlSE
+# The pivot is not included in the left sub-list nor the right sub-list,
+#  therefore its value will be lost during the execution. FAlSE
 
-# The variable mid defined at line 38 may be a decimal number when len(arr) is an odd number. 
+# The variable mid defined at line 11 may be a decimal number when len(arr) is an odd number. 
 # Thus causing the code to fail, since we cannot use a decimal value as an array index. FALSE
 # The code mid = len(ar)//2 will never return a decimal number since the // operand is
 #  a division with flooring operand. This means that after dividing the number the operand

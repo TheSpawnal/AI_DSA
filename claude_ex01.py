@@ -57,6 +57,14 @@ def quicksort(arr, low, high):
 # B: The implementation is stable (maintains relative order of equal elements)
 # C: The base case condition should be "if low > high" instead of "if low >= high"
 # D: The pivot selection method could lead to O(n²) complexity for already sorted arrays
+# QuickSort:
+# - A: True
+# - B: False (quicksort is inherently unstable)
+# - C: False (current condition is correct)
+# - D: True
+
+
+
 
 # 3. Selection Sort with Optimization
 def selection_sort(arr):
@@ -110,11 +118,7 @@ class MinHeap:
 # Correct Answers:
 """
 
-QuickSort:
-- A: True
-- B: False (quicksort is inherently unstable)
-- C: False (current condition is correct)
-- D: True
+
 
 Selection Sort:
 - A: False (doesn't reduce comparisons, only swaps)
