@@ -1,29 +1,29 @@
  
- Define class Node
-    Define init(value)
-        Set field value to value
-        Set field next to None
+#  Define class Node
+#     Define init(value)
+#         Set field value to value
+#         Set field next to None
 
- Define class LinkedList
-    Define init
-        Set head field to None
+#  Define class LinkedList
+#     Define init
+#         Set head field to None
 
-    Define append(value)
-        Create a new node starting from the value parameter
-        If there is no value in the list, then set the new node to the head field
-        else
-            Starting from the head
-            Reach the last node in the list
-            Attach the new node, referencing it in the next field of the current last value
+#     Define append(value)
+#         Create a new node starting from the value parameter
+#         If there is no value in the list, then set the new node to the head field
+#         else
+#             Starting from the head
+#             Reach the last node in the list
+#             Attach the new node, referencing it in the next field of the current last value
 
-    Define remove(value)
-        If there is no node, terminate
-        If the first element is the one to remove, then set the head to the second node
-        Set the head as current node
-        While there is a next value in the next field of the current node
-            If the value of the next item is the one to remove then
-                Set the next field to reference the node after the next node Terminate
-            Set the current node to the next node
+#     Define remove(value)
+#         If there is no node, terminate
+#         If the first element is the one to remove, then set the head to the second node
+#         Set the head as current node
+#         While there is a next value in the next field of the current node
+#             If the value of the next item is the one to remove then
+#                 Set the next field to reference the node after the next node Terminate
+#             Set the current node to the next node
 
 
 class Node:
@@ -35,7 +35,7 @@ class LinkedList:
         self.head = None
  
     def append(self, value):
-        new node = Node(value)
+        new_node = Node(value)
         if self.head is None:
             self.head = new_node
         else:
@@ -43,7 +43,7 @@ class LinkedList:
             while current.next:
                 current = current.next
             current.next = new_node
-            new node.next = current
+            new_node.next = current
     def remove(self, value):
         if self.head is None:
             return
@@ -57,32 +57,32 @@ class LinkedList:
                 return
             current = current.next
 
-which are true:
+# which are true:
 
--This is a correct implementation of a ll and its append and remove methods FALSE
-
-
-line 56, assigning current.next.next would cause the method to remove the correct value but also the value after it. TRUE
-Using current.next = current.next.next.next means that we are redirecting the next
-object point not to the following object (current.next) (that we want to delete), not to the
-second following (current.next.next), but to the third following (current.next.next.next)
-which is too many deleted objects, we only wanted one to be deleted. This is what we should
-have done:
+# -This is a correct implementation of a ll and its append and remove methods FALSE
 
 
-append method is bugged, since after adding a new item to a non-empty list we set 
-the last item's next field to the second last item, creating a loop among the 2 last nodes. TRUE
- After reaching the end of the list we assign the new node to the next field of the last object
- at line 45. After doing so, at line 46, we assign the previously last node to the next field
- of the new last item (the one we’ve just appended). This is clearly wrong because the last
- node’s next value should be set to now. Therefore, the last item is pointing to the second
- last node. Instead, the last node’s next field should be set to None since there is no node
- after the last node
-
-the __init__ method in the LinkedList class is bugged, since we cannot have an empty list because then we have no previous item to attach new nodes to.FALSE
+# line 56, assigning current.next.next would cause the method to remove the correct value but also the value after it. TRUE
+# Using current.next = current.next.next.next means that we are redirecting the next
+# object point not to the following object (current.next) (that we want to delete), not to the
+# second following (current.next.next), but to the third following (current.next.next.next)
+# which is too many deleted objects, we only wanted one to be deleted. This is what we should
+# have done:
 
 
-LL claude: 
+# append method is bugged, since after adding a new item to a non-empty list we set 
+# the last item's next field to the second last item, creating a loop among the 2 last nodes. TRUE
+#  After reaching the end of the list we assign the new node to the next field of the last object
+#  at line 45. After doing so, at line 46, we assign the previously last node to the next field
+#  of the new last item (the one we’ve just appended). This is clearly wrong because the last
+#  node’s next value should be set to now. Therefore, the last item is pointing to the second
+#  last node. Instead, the last node’s next field should be set to None since there is no node
+#  after the last node
+
+# the __init__ method in the LinkedList class is bugged, since we cannot have an empty list because then we have no previous item to attach new nodes to.FALSE
+
+
+# LL claude: 
 class Node:
     def __init__(self, value):
         self.value = value

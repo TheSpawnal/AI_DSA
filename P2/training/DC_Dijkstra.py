@@ -31,20 +31,20 @@ Define dijkstra(graph, start id)
     Return the distances and parent dictionaries
 """
 
-def dijkstra(graph, start id: int)->Tuple[dict, dict]:
+def dijkstra(graph, start_id: int)->Tuple[dict, dict]:
     dist = {}
     parent = {}
     queue = []
     for v in graph:
         parent[v] =-1
         queue.append(v)
-        dist[v] = float('inf') if v != start id else 0
+        dist[v] = float('inf') if v != start_id else 0
  
     while queue:
         u_val: float = float('inf')
         u: Node = queue[0]
         for q in queue:
-            u_val, u = (dist[q.id], q) if dist[q.id]>u val else (uval, u)
+            u_val, u = (dist[q.id], q) if dist[q.id]>u_val else (u_val, u)
         queue.remove(u)
  
         children = [i for i in u.children if i in queue]
@@ -59,11 +59,11 @@ def dijkstra(graph, start id: int)->Tuple[dict, dict]:
 which are true:
 
 - the ifs: 
-    dist[v] = float(’inf’) if v != start id else 0
-    u_val, u = (dist[q.id], q) if dist[q.id]>u val else (uval, u)
+    dist[v] = float('inf') if v != start id else 0
+    u_val, u = (dist[q.id], q) if dist[q.id]>u_val else (uval, u)
 are not correct Python sytntax
 
-- u_val, u = (dist[q.id], q) if dist[q.id]>u val else (uval, u) 
+- u_val, u = (dist[q.id], q) if dist[q.id]>u val else (u_val, u) 
 a less than (<) should be used, since we want to get the node which distance is the shortest
 
 - line 52: 
@@ -71,20 +71,22 @@ a less than (<) should be used, since we want to get the node which distance is 
 the new distance should be dist[u.id]+ v.weight instead of only the last node wight(which is 
 what we often call distance in this scenarios)
 
--this is a correct impleemntation of dijktra algo
+-this is a correct implemntation of dijktra algo
 
 
 Solution
 
  • The syntax is indeed admitted, it is often called a ternary operator. It is just a shorthand
  for an if-else statement in python, just like in many other languages.
+
  • It is true, if we need to find the closest node to start
- id, we need to update u and u
- with a value that is less that the current distance, not greater.
+ id, we need to update u and u with a value that is less that the current distance, not greater.
+
  • The distances in the dist dictionary represent the distances from the start_id, therefore
  we need to get the distance to the previous point (u) plus the distance between u and v, in
  order to get the whole path from start_id to v.
- • Due to the 2 previous statements this is not a correct Dijkstra’s algorithm implementation,
+
+ • Due to the 2 previous statements this is not a correct Dijkstra s algorithm implementation,
  by solving those two issues it would become one.
 
 """

@@ -2,19 +2,18 @@
 #  algorithm. The graph passed to the function is an edge list, represented by a dictionary where
 #  the key is the vertex and its value is a list of the vertices it is connected to.
 
-Define dfs(graph, start, end)
-    Create the stack to track nodes and their paths
-    Put the start node in the stack with itself as the first node of the path
-    While there are values in the stack
-        Pop the stack, returning the starting node and the path
-        If the most recently extracted node is the end node, then return the
-            path that was just returned
-        For every neighbour of the most recently returned node
-            If the neighbour is not in the path that was just returned, then
-                append the neighbour node to the current path, and append the
-                    node and the updated path to the top of the stack
-    Return None
-
+# Define dfs(graph, start, end)
+#     Create the stack to track nodes and their paths
+#     Put the start node in the stack with itself as the first node of the path
+#     While there are values in the stack
+#         Pop the stack, returning the starting node and the path
+#         If the most recently extracted node is the end node, then return the
+#             path that was just returned
+#         For every neighbour of the most recently returned node
+#             If the neighbour is not in the path that was just returned, then
+#                 append the neighbour node to the current path, and append the
+#                     node and the updated path to the top of the stack
+#     Return None
 
 
 def dfs(graph, start, end):
@@ -26,8 +25,8 @@ def dfs(graph, start, end):
             return path
         for neighbor in graph[node]:
             if neighbor not in path:
-                new index = len(stack)
-                stack[new index] = (neighbor, path + [neighbor])
+                new_index = len(stack)
+                stack[new_index] = (neighbor, path + [neighbor])
     return None
 
 """"
@@ -42,7 +41,7 @@ code will prevent the correct popping. False
 we cannot return and delete the index-1 since it will raise an IndexError not having the index-1 in the list. False
 
 -On line :
-stack[new index] = (neighbor, path + [neighbor])
+stack[new_index] = (neighbor, path + [neighbor])
 we cannot append to the list by using the index, we should use the append() method instead.True
 
 -This is not a depth-first search but a breadth-first search. In order to make it a DFS we should
